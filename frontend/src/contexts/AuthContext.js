@@ -3,7 +3,8 @@ import axios from "axios";
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
-    signOut
+    signOut,
+    updateProfile
 } from "firebase/auth";
 
 import auth from "../firebase.js";
@@ -28,7 +29,8 @@ export function AuthProvider({ children }) {
         setError,
         logout,
         message,
-        setMessage
+        setMessage,
+        updateUserProfile
     };
     
     async function register(email, password, birthday, username) {
@@ -40,6 +42,7 @@ export function AuthProvider({ children }) {
             birthday, 
             email, 
             username, 
+            uid: user.uid
         }
         const payloadHeader = {
           headers: {
@@ -58,6 +61,10 @@ export function AuthProvider({ children }) {
     function logout() {
         return signOut(auth)
     }
+
+    function updateUserProfile(user, profile) {
+        return updateProfile(user, profile)
+    }   
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {

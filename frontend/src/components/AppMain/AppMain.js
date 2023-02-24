@@ -1,10 +1,7 @@
 import { experimentalStyled as styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import axios from "axios"
 import BirthdayCard from "../BirthdayCard/BirthdayCard";
-import { useEffect } from "react";
-import auth from "../../firebase";
 
 const Item = styled(BirthdayCard)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -15,27 +12,6 @@ const Item = styled(BirthdayCard)(({ theme }) => ({
 }));
 const AppMain = () => {
     const birthdays = []
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-              const user = auth.currentUser;
-              const token = user && (await user.getIdToken());
-      
-              const payloadHeader = {
-                headers: {
-                  "Content-Type": "application/json",
-                  Authorization: `Bearer ${token}`,
-                },
-              };
-              const res = await axios.get("http://127.0.0.1:8000/birthdays", payloadHeader);
-              console.log(await res.data);
-            } catch (e) {
-              console.log(e);
-            }
-          };
-    
-        fetchData();
-      }, []);
     return (
         <Box sx={{ flexGrow: 1 }}>
             <Grid

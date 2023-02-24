@@ -6,29 +6,26 @@ function leadZero(number) {
         return number;
     }
 }
-async function fetchAllBirthdays(uid) {
+async function fetchProfileInfo(uid) {
     const collection = db.collection("users");
+    console.log(uid)
     try {
-        const snapshot = await collection.get();
-        const users = snapshot.docs.map((user) => {
-            const { birthday, ...userData } = user.data();
-            const birthdayDate = new Date(birthday);
-            const nextBirthdayDate = `${new Date().getFullYear()}-${leadZero(
-                birthdayDate.getMonth() + 1
-            )}-${leadZero(birthdayDate.getDay())}`;
-            return {
-                id: user.id,
-                birthday: nextBirthdayDate,
-                ...userData,
-            };
-        });
-
-        return users;
+        const profile = await collection.doc(uid).get();
+        const { birthday, ...userData } = profile.data();
+        const birthdayDate = new Date(birthday);
+        const nextBirthdayDate = `${new Date().getFullYear()}-${leadZero(
+            birthdayDate.getMonth() + 1
+        )}-${leadZero(birthdayDate.getDay())}`;
+        return {
+            id: uid,
+            birthday: nextBirthdayDate,
+            ...userData,
+        };
     } catch (e) {
-        throw new Error("Error while fetching birthdays: " + e.message);
+        throw new Error("Error while fetching profile: " + e.message);
     }
 }
 
 module.exports = {
-    fetchAllBirthdays,
+    fetchProfileInfo,
 };

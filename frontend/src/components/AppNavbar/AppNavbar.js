@@ -114,9 +114,6 @@ function AppNavbar() {
                             </MenuItem>
                         </Menu>
                     </Box>
-                    <AdbIcon
-                        sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
-                    />
                     <Typography
                         variant="h5"
                         noWrap
@@ -158,8 +155,8 @@ function AppNavbar() {
                                     sx={{ p: 0 }}
                                 >
                                     <Avatar
-                                        alt="Remy Sharp"
-                                        src="/static/images/avatar/2.jpg"
+                                        alt={currentUser.username}
+                                        src={currentUser.photoURL}
                                     />
                                 </IconButton>
                             </Tooltip>

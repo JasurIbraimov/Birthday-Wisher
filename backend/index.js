@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const { db, auth } = require("./firebase");
-const { fetchAllBirthdays } = require("./api");
+const { fetchProfileInfo } = require("./api");
 const PORT = 8000;
 const VerifyToken = require("./middlewares/VerifyToken");
 const app = express();
@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
 // Get All Birthdays
 app.get("/birthdays", async (req, res) => {
     try {
-        const birthdays = await fetchAllBirthdays(req.user.uid);
+        const birthdays = await fetchProfileInfo(req.user.uid);
         return res.status(200).send(birthdays);
     } catch (e) {
         return res.status(400).send({
@@ -39,7 +39,7 @@ app.get("/birthdays", async (req, res) => {
 
 // Create a Birthday
 app.post("/birthday", async (req, res) => {
-    const { birthday, email, username } = req.body;
+    const { birthday, email, username, uid } = req.body;
     try {
         const collection = db.collection("users");
         const data = {
@@ -49,7 +49,7 @@ app.post("/birthday", async (req, res) => {
             friends: [],
             wishList: [],
         };
-        const docRef = await collection.add(data);
+        const docRef = await collection.doc(uid).set(data);
         return res.status(200).send({
             message: docRef.id,
         });
