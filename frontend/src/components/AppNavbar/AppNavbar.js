@@ -130,7 +130,7 @@ function AppNavbar() {
                             textDecoration: "none",
                         }}
                     >
-                        LOGO
+                        Birthday Wisher
                     </Typography>
                     <Box
                         sx={{

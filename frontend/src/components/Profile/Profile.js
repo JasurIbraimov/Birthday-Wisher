@@ -40,7 +40,7 @@ const Profile = () => {
         fetchData();
     }, []);
     const fetchAvatars = () => {
-        setSelectedAvatar(null)
+        setSelectedAvatar(null);
         const res = generateAvatar();
         setAvatars(res);
     };
@@ -118,12 +118,12 @@ const Profile = () => {
                                                         p: 1,
                                                         cursor: "pointer",
                                                         transition:
-                                                            index ==
+                                                            index ===
                                                             selectedAvatar
                                                                 ? "0.5s"
                                                                 : 0,
                                                         transform:
-                                                            index ==
+                                                            index ===
                                                             selectedAvatar
                                                                 ? "scale(1.1) rotate(360deg)"
                                                                 : "none",
@@ -147,6 +147,18 @@ const Profile = () => {
                                         New Images
                                     </Button>
                                 </form>
+                            </Paper>
+                        </Grid>
+                    </Grid>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12} sm={12} md={6} lg={6}>
+                            <Paper sx={{ p: 3 }}>
+                                <Typography variant="h4">Fill WishList</Typography>
+                            </Paper>
+                        </Grid>
+                        <Grid item xs={12} sm={12} md={6} lg={6}>
+                            <Paper sx={{ p: 3 }}>
+                                <Typography variant="h4">Fill WishList</Typography>
                             </Paper>
                         </Grid>
                     </Grid>
