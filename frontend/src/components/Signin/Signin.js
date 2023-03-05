@@ -10,9 +10,11 @@ import {
 import { useState, useEffect } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 const Signin = () => {
     const navigate = useNavigate();
+    const { t } = useTranslation();   
     const { currentUser, login, setMessage, setError } = useAuth();
     const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState("");
@@ -29,10 +31,10 @@ const Signin = () => {
         try {
             setLoading(true);
             await login(email, password);
-            setMessage("Welcome!")
+            setMessage(t("welcome"))
             navigate("/profile");
         } catch (e) {
-            setError("Wrong credentials! Please, try again!")
+            setError(t("tryAgain"))
         }
 
         setLoading(false);
@@ -42,14 +44,14 @@ const Signin = () => {
             <form onSubmit={handleFormSubmit}>
                 <Grid container spacing={4}>
                     <Grid item xs={12} sm={6} md={8} lg={8}>
-                        <Typography variant="h3">Sign In</Typography>
+                        <Typography variant="h3">{t("signin")}</Typography>
                         <FormControl
                             margin="dense"
                             fullWidth
                             variant="standard"
                         >
                             <InputLabel htmlFor="email">
-                                Email address
+                               {t("email")}
                             </InputLabel>
                             <Input
                                 id="email"
@@ -63,7 +65,7 @@ const Signin = () => {
                             fullWidth
                             variant="standard"
                         >
-                            <InputLabel htmlFor="password">Password</InputLabel>
+                            <InputLabel htmlFor="password">{t("password")}</InputLabel>
                             <Input
                                 id="password"
                                 type="password"
@@ -78,7 +80,7 @@ const Signin = () => {
                             variant="contained"
                             sx={{ mt: 2 }}
                         >
-                            Submit
+                            {t("submit")}
                         </Button>
                     </Grid>
                 </Grid>

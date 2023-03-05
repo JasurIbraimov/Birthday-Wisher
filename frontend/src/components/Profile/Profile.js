@@ -6,7 +6,10 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import auth from "../../firebase";
 import { generateAvatar } from "../../utils/GenerateAvatar";
+import Loader from "../Loader/Loader";
+import { useTranslation } from 'react-i18next';
 const Profile = () => {
+    const { t } = useTranslation();   
     const [avatars, setAvatars] = useState([]);
     const [profileData, setProfileData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -51,7 +54,7 @@ const Profile = () => {
         e.preventDefault();
 
         if (selectedAvatar === null) {
-            return setError("Please select an avatar");
+            return setError(t('selectAvatar'));
         }
 
         try {
@@ -64,7 +67,7 @@ const Profile = () => {
             await updateUserProfile(user, profile);
             navigate("/profile");
         } catch (e) {
-            setError("Failed to update profile");
+            setError(t("updateProfileFail"));
         }
 
         setLoading(false);
@@ -73,13 +76,18 @@ const Profile = () => {
     return (
         <Box>
             {loading ? (
-                <h1>Loading...</h1>
+                <Loader />
             ) : (
                 <>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={12} md={6} lg={6}>
-                            <Paper sx={{ p: 3 }}>
-                                <Typography variant="h3">
+                            <Paper sx={{ p: 3, textAlign: "center" }}>
+                                <Avatar
+                                    sx={{width: "50%", height: "50%", m: "0 auto", backgroundColor: "#1976D2", p: 2}} 
+                                    alt={profileData.username}
+                                    src={currentUser.photoURL}
+                                />
+                                <Typography variant="h3" mt={1}>
                                     {profileData.username}
                                 </Typography>
                                 <Typography variant="body2">
@@ -91,21 +99,24 @@ const Profile = () => {
                         <Grid item xs={12} sm={12} md={6} lg={6}>
                             <Paper sx={{ p: 3 }}>
                                 <Typography variant="h5">
-                                    Pick your avatar
+                                    {t("pickAvatar")}
                                 </Typography>
                                 <form onSubmit={handleFormSubmit}>
                                     <Grid
+                                        justifyContent="center"
                                         container
                                         spacing={2}
                                         sx={{ mb: 3, mt: 2 }}
                                     >
                                         {avatars.map((avatar, index) => (
                                             <Grid
-                                                item
-                                                xs={4}
+                                                display="flex"
+                                                justifyContent="center"
+                                                xs={6}
                                                 sm={4}
                                                 md={4}
                                                 lg={4}
+                                                item
                                                 key={index}
                                             >
                                                 <Avatar
@@ -136,7 +147,7 @@ const Profile = () => {
                                         ))}
                                     </Grid>
                                     <Button type="submit" variant="contained">
-                                        Submit
+                                        {t("submit")}
                                     </Button>
                                     <Button
                                         onClick={fetchAvatars}
@@ -144,21 +155,18 @@ const Profile = () => {
                                         sx={{ ml: 2 }}
                                         variant="outlined"
                                     >
-                                        New Images
+                                        {t("newImages")}
                                     </Button>
                                 </form>
                             </Paper>
                         </Grid>
                     </Grid>
-                    <Grid container spacing={2}>
+                    <Grid container spacing={2} sx={{mt: 1}}>
                         <Grid item xs={12} sm={12} md={6} lg={6}>
                             <Paper sx={{ p: 3 }}>
-                                <Typography variant="h4">Fill WishList</Typography>
-                            </Paper>
-                        </Grid>
-                        <Grid item xs={12} sm={12} md={6} lg={6}>
-                            <Paper sx={{ p: 3 }}>
-                                <Typography variant="h4">Fill WishList</Typography>
+                                <Typography variant="h4">
+                                    {t("fillWishlist")}
+                                </Typography>
                             </Paper>
                         </Grid>
                     </Grid>

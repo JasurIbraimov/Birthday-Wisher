@@ -1,0 +1,29 @@
+{
+    "translation": {
+        "confirmPassword": "Confirm Password",
+        "appName": "Birthday Wisher",
+        "profile": "Profile",
+        "logOut": "Log Out",
+        "myFriends": "My Friends",
+        "submit": "Submit",
+        "password": "Password",
+        "signup": "Sign up",
+        "signin": "Sign in",
+        "email": "Email Address",
+        "birthday": "Your birthday",
+        "username": "Username",
+        "newImages": "New Images",
+        "pickAvatar": "Pick your avatar",
+        "welcome": "Welcome!",
+        "tryAgain": "Wrong credentials! Please, try again!",
+        "birthdayNotChosen": "Birthday not chosen!",
+        "passwordMustMatch": "Passwords do not match!",
+        "emailInUse": "Email already in use!",
+        "selectAvatar": "Please select an avatar",
+        "updateProfileFail": "Failed to update profile! Please, try again!",
+        "fillWishlist": "Fill WishList",
+        "languages": "Languages",
+        "openSettings": "Open settings",
+        "openLanguages": "Open Languages"
+    }
+}

@@ -12,8 +12,11 @@ import Calendar from "rc-calendar";
 import moment from "moment";
 import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 const Signup = () => {
+
+    const { t } = useTranslation();   
     const navigate = useNavigate();
     const { currentUser, register, setError, setMessage } = useAuth();
     const [loading, setLoading] = useState(false);
@@ -32,10 +35,11 @@ const Signup = () => {
     async function handleFormSubmit(e) {
         e.preventDefault();
         if(birthday.length == 0) {
-            return setError("Birthday not chosen!")
+            return setError(t("birthdayNotChosen"))
         }
         if (password !== confirmPassword) {
-            return setError("Passwords do not match!");
+            return setError(t(        "passwordMustMatch"
+            ));
         }
 
         try {
@@ -44,7 +48,7 @@ const Signup = () => {
             navigate("/profile");
             setMessage("Welcome, " + username + "!")
         } catch (e) {
-            setError("Email already in use!")
+            setError(t("emailInUse"))
         }
 
         setLoading(false);
@@ -61,7 +65,7 @@ const Signup = () => {
                             variant="standard"
                         >
                             <InputLabel htmlFor="username">
-                                Username
+                                {t("username")}
                             </InputLabel>
                             <Input
                                 required
@@ -79,7 +83,7 @@ const Signup = () => {
                             variant="standard"
                         >
                             <InputLabel htmlFor="email">
-                                Email address
+                                {t("email")}
                             </InputLabel>
                             <Input
                                 required
@@ -94,7 +98,7 @@ const Signup = () => {
                             fullWidth
                             variant="standard"
                         >
-                            <InputLabel htmlFor="password">Password</InputLabel>
+                            <InputLabel htmlFor="password">{t("password")}</InputLabel>
                             <Input
                                 required
                                 id="password"
@@ -109,7 +113,7 @@ const Signup = () => {
                             variant="standard"
                         >
                             <InputLabel htmlFor="confirm">
-                                Confirm Password
+                                {t("confirmPassword")}
                             </InputLabel>
                             <Input
                                 required
@@ -128,12 +132,12 @@ const Signup = () => {
                             variant="contained"
                             sx={{ mt: 2 }}
                         >
-                            Submit
+                            {t("submit")}
                         </Button>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4} lg={4}>
                         <FormControl fullWidth variant="standard">
-                            <Typography variant="h6">Your Birthday</Typography>
+                            <Typography variant="h6">{t("birthday")}</Typography>
                             <Calendar
                                 style={{ width: "100%" }}
                                 onChange={(value) =>

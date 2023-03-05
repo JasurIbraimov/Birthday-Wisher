@@ -1,0 +1,30 @@
+{
+    "translation": {
+        "confirmPassword": "Подтвердите пароль",
+        "appName": "День рождения",
+        "profile": "Профиль",
+        "logOut": "Выйти",
+        "myFriends": "Мои друзья",
+        "submit": "Подтвердить",
+        "password": "Пароль",
+        "signup": "Регистрация",
+        "signin": "Войти",
+        "email": "Почта",
+        "birthday": "Ваш день рождения",
+        "username": "Логин",
+        "newImages": "Новый картинки",
+        "pickAvatar": "Выберите себе картинку",
+        "welcome": "Добро пожаловать!",
+        "tryAgain": "Неверные данные! Пожалуйста, попробуйте еще раз!",
+        "birthdayNotChosen": "День рождения не выбрано!",
+        "passwordMustMatch": "Пароль должны совпадать!",
+        "emailInUse": "Почта уже использована!",
+        "selectAvatar": "Пожалуйста, выберите картинку",
+        "updateProfileFail": "Ошибка при обновлении профиля, попробуйте еще раз!",
+        "fillWishlist": "Заполнить WishList",
+        "languages": "Языки",
+        "openSettings": "Открыть настройки",
+        "openLanguages": "Открыть выбор языка"
+    }
+   
+}
