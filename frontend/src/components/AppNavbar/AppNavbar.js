@@ -19,7 +19,6 @@ import RussianIcon from "./russian.png"
 
 
 import { useTranslation } from "react-i18next";
-import { Icon } from "@mui/material";
 const lngs = [
     { code: "en", native: "English", icon: EnglishIcon },
     { code: "ru", native: "Russian", icon: RussianIcon },

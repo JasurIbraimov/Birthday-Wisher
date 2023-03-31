@@ -38,8 +38,7 @@ const Signup = () => {
             return setError(t("birthdayNotChosen"))
         }
         if (password !== confirmPassword) {
-            return setError(t(        "passwordMustMatch"
-            ));
+            return setError(t("passwordMustMatch"));
         }
 
         try {

@@ -62,7 +62,7 @@ export function AuthProvider({ children }) {
 
     function logout() {
         return signOut(auth)
-    }
+     }
 
     function updateUserProfile(user, profile) {
         return updateProfile(user, profile)
