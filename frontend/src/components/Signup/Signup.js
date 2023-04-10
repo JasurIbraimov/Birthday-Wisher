@@ -15,7 +15,6 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 
 const Signup = () => {
-
     const { t } = useTranslation();   
     const navigate = useNavigate();
     const { currentUser, register, setError, setMessage } = useAuth();
